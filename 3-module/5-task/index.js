@@ -1,3 +1,11 @@
 function getMinMax(str) {
-  // ваш код...
+  const arrNumber = str
+    .split(' ')
+    .filter(user => !Number.isNaN(Number(user)));
+
+  const objMinMax = {};
+  objMinMax.max = Math.max(...arrNumber);
+  objMinMax.min = Math.min(...arrNumber);
+
+  return objMinMax;
 }
