@@ -28,8 +28,8 @@ export default class ProductGrid {
     const productsFragment = new DocumentFragment();
 
     for (let product of productsArr) {
-      let card = new ProductCard(product);
-      productsFragment.append(card.elem);
+      let productCard = new ProductCard(product);
+      productsFragment.append(productCard.elem);
     }
 
     this.productGridInner.append(productsFragment);
@@ -68,7 +68,7 @@ export default class ProductGrid {
         return product.category === this.filters.category;
       });
     }
-
+  
     this.createProductGrid(filtredProducts);
   }
 }

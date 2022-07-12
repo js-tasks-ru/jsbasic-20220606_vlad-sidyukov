@@ -20,8 +20,6 @@ export default class Cart {
         this.cartItems[productAvailability].count += 1;
       }
 
-      console.log(this.cartItems);
-
       this.onProductUpdate(this.cartItems);
     }
   }
@@ -36,8 +34,6 @@ export default class Cart {
         }
       }
     });
-
-    console.log(this.cartItems);
 
     this.onProductUpdate(this.cartItems);
   }

@@ -1,5 +1,7 @@
 import createElement from '../../assets/lib/create-element.js';
 
+
+
 export default class CartIcon {
   constructor() {
     this.render();
@@ -9,6 +11,8 @@ export default class CartIcon {
 
   render() {
     this.elem = createElement('<div class="cart-icon"></div>');
+    let computedStyleModal = getComputedStyle(this.elem);
+    this.startTopCoordinateCart = computedStyleModal.top;
   }
 
   update(cart) {
@@ -21,7 +25,6 @@ export default class CartIcon {
           <span class="cart-icon__price">€${cart.getTotalPrice().toFixed(2)}</span>
         </div>`;
 
-      this.startTopCoordinateCart = this.elem.getBoundingClientRect().top + window.pageYOffset;
       this.updatePosition();
 
       this.elem.classList.add('shake');
@@ -45,7 +48,9 @@ export default class CartIcon {
         document.querySelector('.container').getBoundingClientRect().right + 20,
         document.documentElement.clientWidth - this.elem.offsetWidth - 10
       ) + 'px';
+
       if (window.pageYOffset > this.startTopCoordinateCart) {
+
         Object.assign(this.elem.style, {
           position: 'fixed',
           top: '50px',

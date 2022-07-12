@@ -39,7 +39,7 @@ export default class Modal {
     this.modalCloseButton = this.elem.querySelector('.modal__close');
     this.clickCloseButtonHandler = this.modalCloseButton.addEventListener('click', this.close.bind(this));
 
-    this.keydownEsc = this.onKeydownEsc.bind(this)
+    this.keydownEsc = this.onKeydownEsc.bind(this);
   }
 
   open() {
