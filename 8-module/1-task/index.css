@@ -30,7 +30,7 @@
 }
 
 .cart-icon_visible {
-  display: block;
+  display: flex;
 }
 
 .cart-icon__count {
