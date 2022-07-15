@@ -35,7 +35,6 @@ export default class ProductCard {
     this.clickPlusHandler = this.cardButton.addEventListener('click', this.clickPlusHandler.bind(this));
 
     this.card = this.elem.closest(`.card`);
-    this.clickCustomIdHandler = this.card.addEventListener("product-add", this.clickCustomIdHandler);
   }
 
   clickPlusHandler() {
@@ -43,10 +42,6 @@ export default class ProductCard {
       detail: this.id,
       bubbles: true,
     }));
-  }
-
-  clickCustomIdHandler(evt) {
-    console.log(evt.detail);
   }
 }
 

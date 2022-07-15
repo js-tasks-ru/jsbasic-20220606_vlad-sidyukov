@@ -37,14 +37,11 @@ export default class RibbonMenu {
 
     this.elem = this.createRibonMenu();
 
-    this.clickLinkCustomIdHandler = this.elem.addEventListener('ribbon-select', this.onClickCustomLinkId);
-
     this.ribonMenuRightArrow = this.ribonMenuBody.querySelector('.ribbon__arrow_right');
     this.ribonMenuLeftArrow = this.ribonMenuBody.querySelector('.ribbon__arrow_left');
 
     this.clickRightArrowHandler = this.ribonMenuRightArrow.addEventListener('click', this.onClickArrow.bind(this));
     this.clickLeftArrowHandler = this.ribonMenuLeftArrow.addEventListener('click', this.onClickArrow.bind(this));
-
 
     this.toggleVisibilityArrow();
 
@@ -92,6 +89,7 @@ export default class RibbonMenu {
 
     menuLinks.forEach(link => {
       if (link === evt.target) {
+        this.curentValue = link.dataset.id;
         link.classList.add('ribbon__item_active');
         link.dispatchEvent(new CustomEvent('ribbon-select', {
           detail: link.dataset.id,
@@ -113,9 +111,5 @@ export default class RibbonMenu {
         this.ribonMenuNav.scrollBy(-350, 0);
         break;
     }
-  }
-
-  onClickCustomLinkId(evt) {
-    console.log(evt.detail);
   }
 }

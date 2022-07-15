@@ -29,7 +29,8 @@ export default class StepSlider {
 
     this.sliderThumb = this.sliderBody.querySelector('.slider__thumb');
     this.sliderProgress = this.sliderBody.querySelector('.slider__progress');
-    this.sliderValue = this.sliderBody.querySelector('.slider__value');
+    this.sliderValueBlock = this.sliderBody.querySelector('.slider__value');
+    this.curentValue = Number(this.sliderValueBlock.textContent);
 
     this.elem = this.createSlider();
 
@@ -37,8 +38,6 @@ export default class StepSlider {
     this.arrSteps = this.getArrSteps();
 
     this.clickSliderHandler = this.elem.addEventListener('click', this.onClickSlider.bind(this));
-
-    this.changeSliderValueCustomHandler = this.elem.addEventListener('slider-change', this.onChangeSliderValueCustom);
 
     this.downSliderThumbHandler = this.sliderThumb.addEventListener('pointerdown', this.onDownSliderThumb.bind(this));
   }
@@ -63,10 +62,10 @@ export default class StepSlider {
       this.sliderThumb.style.left = targetX + '%';
       this.sliderProgress.style.width = targetX + '%';
 
-
       const currentStepIndex = this.arrSteps.indexOf(closestStep);
       this.togglerActiveStep(currentStepIndex);
-      this.sliderValue.textContent = currentStepIndex;
+
+      this.sliderValueBlock.textContent = currentStepIndex;
     }
 
     const mouseMove = onMouseMove.bind(this);
@@ -85,7 +84,7 @@ export default class StepSlider {
       document.removeEventListener('pointerup', mouseUp);
 
       this.elem.dispatchEvent(new CustomEvent('slider-change', {
-        detail: Number(this.sliderValue.textContent),
+        detail: Number(this.sliderValueBlock.textContent),
         bubbles: true
       }));
     }
@@ -104,10 +103,10 @@ export default class StepSlider {
 
     const currentStepIndex = this.arrSteps.indexOf(closestStep);
     this.togglerActiveStep(currentStepIndex);
-    this.sliderValue.textContent = currentStepIndex;
+    this.sliderValueBlock.textContent = currentStepIndex;
 
     this.elem.dispatchEvent(new CustomEvent('slider-change', {
-      detail: Number(this.sliderValue.textContent),
+      detail: Number(this.sliderValueBlock.textContent),
       bubbles: true
     }));
   }
@@ -145,10 +144,6 @@ export default class StepSlider {
     }
 
     return arrSteps;
-  }
-
-  onChangeSliderValueCustom(evt) {
-    console.log(evt.detail);
   }
 
   togglerActiveStep(currentStepIndex) {
