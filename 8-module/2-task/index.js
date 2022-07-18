@@ -57,7 +57,7 @@ export default class ProductGrid {
       });
     }
 
-    if (this.filters.maxSpiciness) {
+    if (isFinite(this.filters.maxSpiciness)) {
       filtredProducts = filtredProducts.filter(product => {
         return product.spiciness <= this.filters.maxSpiciness;
       });
@@ -68,7 +68,6 @@ export default class ProductGrid {
         return product.category === this.filters.category;
       });
     }
-  
     this.createProductGrid(filtredProducts);
   }
 }

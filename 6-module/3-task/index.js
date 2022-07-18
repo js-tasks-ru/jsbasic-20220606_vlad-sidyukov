@@ -52,8 +52,6 @@ export default class Carousel {
 
     this.clickRightArrowHandler = this.rightArrow.addEventListener('click', this.clickRightArrowHandler.bind(this));
     this.clickLeftArrowHandler = this.leftArrow.addEventListener('click', this.clickLeftArrowHandler.bind(this));
-
-    this.clickCustomIdHandler = this.elem.addEventListener("product-add", this.clickCustomIdHandler);
   }
 
   createCarusele() {
@@ -76,10 +74,6 @@ export default class Carousel {
       detail: this.dataset.id,
       bubbles: true,
     }));
-  }
-
-  clickCustomIdHandler(evt) {
-    console.log(evt.detail);
   }
 
   clickRightArrowHandler() {
